@@ -45,7 +45,8 @@ export default function App() {
       onPointerDown={handlePointerDown}
     >
       <div className="background-text" aria-hidden="true">
-        <span data-text="CATCH THE BLOB">CATCH THE BLOB</span>
+        <span data-text="CATCH">CATCH</span>
+        <span data-text="THE BLOB">THE BLOB</span>
         <span data-text="IF YOU CAN">IF YOU CAN</span>
       </div>
 
