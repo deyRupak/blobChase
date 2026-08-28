@@ -12,49 +12,113 @@ body,
 
 body {
   overflow: hidden;
-}
-/* 
-.playground {
-  position: relative;
-  width: 100vw;
-  height: 100dvh;
-  overflow: hidden;
-  touch-action: none;
-  cursor: crosshair;
-} */
-
-.background-text {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 4vw;
-  font-size: clamp(4rem, 14vw, 14rem);
-  font-weight: 900;
-  line-height: 0.8;
-  letter-spacing: -0.07em;
-  user-select: none;
-  pointer-events: none;
-}
-
-.background-text span:last-child {
-  align-self: flex-end;
+  background: #08050d;
 }
 
 .playground {
   position: relative;
+
   width: 100vw;
   height: 100dvh;
+
   overflow: hidden;
+
+  background:
+    radial-gradient(circle at 50% 50%,
+      rgba(120, 40, 180, 0.12),
+      transparent 55%),
+    #08050d;
 
   touch-action: none;
 
   cursor: none;
 }
 
-@media (pointer: coarse) {
-  .chase-cursor {
-    display: none;
+/* --------------------------------
+   Background typography
+-------------------------------- */
+
+.background-text {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 4vw;
+
+  font-size: clamp(3.5rem, 12vw, 14rem);
+  font-weight: 950;
+  line-height: 0.78;
+  letter-spacing: -0.075em;
+
+  color: #eee5f7;
+
+  user-select: none;
+  pointer-events: none;
+
+  z-index: 1;
+}
+
+.background-text span {
+  position: relative;
+
+  display: block;
+
+  max-width: 100%;
+
+  white-space: nowrap;
+
+  transform-origin: center;
+}
+
+.background-text span:first-child {
+  align-self: flex-start;
+  transform: rotate(-2deg);
+}
+
+.background-text span:last-child {
+  align-self: flex-end;
+  transform: rotate(1.5deg);
+}
+
+/* --------------------------------
+   Ghost typography
+-------------------------------- */
+
+.background-text span::after {
+  content: attr(data-text);
+
+  position: absolute;
+  inset: 0;
+
+  color: transparent;
+
+  -webkit-text-stroke: 1px rgba(200, 130, 240, 0.25);
+
+  transform: translate(5px, 5px);
+
+  pointer-events: none;
+}
+
+/* --------------------------------
+   Mobile
+-------------------------------- */
+
+@media (max-width: 600px) {
+  .background-text {
+    padding: 6vw;
+
+    font-size: clamp(3rem, 15vw, 6rem);
+
+    line-height: 0.82;
+
+    letter-spacing: -0.07em;
+  }
+
+  .background-text span:first-child,
+  .background-text span:last-child {
+    align-self: center;
   }
 }
