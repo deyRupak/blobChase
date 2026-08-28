@@ -1,0 +1,60 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  overflow: hidden;
+}
+/* 
+.playground {
+  position: relative;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  touch-action: none;
+  cursor: crosshair;
+} */
+
+.background-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4vw;
+  font-size: clamp(4rem, 14vw, 14rem);
+  font-weight: 900;
+  line-height: 0.8;
+  letter-spacing: -0.07em;
+  user-select: none;
+  pointer-events: none;
+}
+
+.background-text span:last-child {
+  align-self: flex-end;
+}
+
+.playground {
+  position: relative;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+
+  touch-action: none;
+
+  cursor: none;
+}
+
+@media (pointer: coarse) {
+  .chase-cursor {
+    display: none;
+  }
+}
