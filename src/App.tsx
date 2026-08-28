@@ -45,8 +45,8 @@ export default function App() {
       onPointerDown={handlePointerDown}
     >
       <div className="background-text" aria-hidden="true">
-        <span>DON'T TOUCH</span>
-        <span>THE BLOB</span>
+        <span>CATCH THE BLOB</span>
+        <span>IF YOU CAN</span>
       </div>
 
       <Blob pointer={pointer} />
