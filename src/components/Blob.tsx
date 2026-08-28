@@ -22,8 +22,8 @@ const PADDING = 20;
 const SAFE_DISTANCE = 180;
 const MOUSE_ESCAPE_DISTANCE = 220;
 
-const TOUCH_LEAD_DISTANCE = 100;
-const TOUCH_ESCAPE_DISTANCE = 140;
+const TOUCH_LEAD_DISTANCE = 120;
+const TOUCH_ESCAPE_DISTANCE = 180;
 
 export default function Blob({ pointer }: BlobProps) {
     const [position, setPosition] = useState<Position>({
@@ -54,7 +54,7 @@ export default function Blob({ pointer }: BlobProps) {
         /*
          * DESKTOP
          *
-         * Stay away from the cursor.
+         * The blob simply runs away from the cursor.
          */
         if (pointer.type === "mouse") {
             if (distance >= SAFE_DISTANCE || distance === 0) {
@@ -74,7 +74,7 @@ export default function Blob({ pointer }: BlobProps) {
         /*
          * MOBILE
          *
-         * Track the direction the finger is moving.
+         * The blob always tries to stay away from the finger.
          */
         const previous = previousPointerRef.current;
 
@@ -91,7 +91,8 @@ export default function Blob({ pointer }: BlobProps) {
         /*
          * Finger is moving:
          *
-         * Put the blob ahead of the finger.
+         * Place the blob ahead of the finger's
+         * movement direction.
          */
         if (movementDistance > 2) {
             const directionX = movementX / movementDistance;
@@ -112,9 +113,10 @@ export default function Blob({ pointer }: BlobProps) {
         /*
          * Finger is stationary:
          *
-         * If it landed on the blob, immediately escape.
+         * Move the blob directly away from
+         * wherever the finger touched.
          */
-        if (distance < SAFE_DISTANCE && distance > 0) {
+        if (distance > 0) {
             const angle = Math.atan2(deltaY, deltaX);
 
             moveTo(
